@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import { div } from 'framer-motion/client';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const AddRecipe = () => {
 
@@ -116,6 +117,9 @@ const AddRecipe = () => {
                     </form>
                 </motion.div>
 
+        </div>
+        <div>
+            <Footer></Footer>
         </div>
             
       </div>

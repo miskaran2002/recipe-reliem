@@ -3,6 +3,8 @@ import { useLoaderData } from 'react-router';
 import RecipeCard from './RecipeCard';
 import ThemeSlider from './ThemeSlider';
 import Navbar from './Navbar';
+import Footer from './Footer';
+import WhyChooseUs from './WhyChooseUs';
 
 const Home = () => {
     const recipes=useLoaderData();
@@ -24,6 +26,14 @@ const Home = () => {
                 {
                     recipes.map(recipe=><RecipeCard recipe={recipe} key={recipe._id}></RecipeCard>)
                 }
+            </div>
+
+            <div>
+                <WhyChooseUs></WhyChooseUs>
+            </div>
+
+            <div>
+                <Footer></Footer>
             </div>
         </div>
     );
