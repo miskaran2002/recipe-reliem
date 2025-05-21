@@ -2,12 +2,17 @@ import React from 'react';
 import { useLoaderData } from 'react-router';
 import RecipeCard from './RecipeCard';
 import ThemeSlider from './ThemeSlider';
+import Navbar from './Navbar';
 
 const Home = () => {
     const recipes=useLoaderData();
      console.log(recipes);
     return (
         <div>
+
+            <div>
+                <Navbar></Navbar>
+            </div>
 
             <div className=''>
                 <ThemeSlider></ThemeSlider>
