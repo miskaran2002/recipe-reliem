@@ -10,7 +10,7 @@ const Footer = () => {
                 {/* Logo and Name */}
                 <div className="flex items-center gap-3">
                     <span className="text-3xl">🍽️</span>
-                    <span className="text-xl font-semibold tracking-wide">MyRecipes</span>
+                    <span className="text-xl font-semibold tracking-wide">RecipeRealm</span>
                 </div>
 
                 {/* Navigation Links */}

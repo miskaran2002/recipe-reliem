@@ -13,6 +13,7 @@ const AddRecipe = () => {
         const formData = new FormData(form);
         const newRecipe = Object.fromEntries(formData.entries());
         console.log(newRecipe);
+        form.reset();
         // send recipe data to server
 
         fetch('http://localhost:3000/recipes', {
