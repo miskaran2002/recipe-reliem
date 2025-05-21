@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 
 const RecipeCard = ({ recipe }) => {
     const navigate = useNavigate();
-    const { _id, image, title, cuisineType, likes = 0 } = recipe;
+    const { _id, image, title, cuisineType, likes: initialLikes = 0 } = recipe;
+
+    const [likes, setLikes] = useState(initialLikes);
+    const [isLiking, setIsLiking] = useState(false);
+
+    const handleLike = async () => {
+        if (isLiking) return; // prevent multiple clicks
+        setLikes(prev => prev + 1); // Optimistic UI
+        setIsLiking(true);
+
+        try {
+            const res = await fetch(`http://localhost:5000/recipes/${_id}/like`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            const data = await res.json();
+
+            if (!data.success) {
+                // Rollback if backend fails
+                setLikes(prev => prev - 1);
+                alert('Failed to like. Try again.');
+            }
+        } catch (err) {
+            console.error(err);
+            setLikes(prev => prev - 1); // Rollback
+            alert('Server error. Please try again later.');
+        } finally {
+            setIsLiking(false);
+        }
+    };
 
     return (
         <motion.div
@@ -24,7 +54,14 @@ const RecipeCard = ({ recipe }) => {
             <div className="p-4 space-y-2">
                 <h3 className="text-xl font-bold text-gray-800 truncate">{title}</h3>
                 <p className="text-gray-600 text-sm">Cuisine: {cuisineType}</p>
-                <p className="text-gray-600 text-sm">❤️ {likes} Likes</p>
+
+                <p
+                    className="text-gray-600 text-sm cursor-pointer hover:text-orange-500 transition"
+                    onClick={handleLike}
+                    title="Click to like"
+                >
+                    ❤️ {likes} Likes
+                </p>
 
                 <button
                     onClick={() => navigate(`/recipes/${_id}`)}
