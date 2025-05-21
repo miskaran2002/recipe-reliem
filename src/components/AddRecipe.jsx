@@ -1,11 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Swal from 'sweetalert2';
 
 const AddRecipe = () => {
 
-    const handleAddRecipe=e=>{
+    const handleAddRecipe = e => {
         e.preventDefault();
         const form = e.target;
+        const formData = new FormData(form);
+        const newRecipe = Object.fromEntries(formData.entries());
+        console.log(newRecipe);
+        // send recipe data to server
+
+        fetch('http://localhost:3000/recipes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newRecipe),
+        }
+        )
+            .then(res => res.json())
+            .then(data => {
+               if(data.insertedId){
+                console.log('Recipe added successfully:', data);
+                   Swal.fire({
+                       position: "top-end",
+                       icon: "success",
+                       title: "Recipe added successfully",
+                       showConfirmButton: false,
+                       timer: 1500
+                   });
+                  
+               }
+            })
+
+
     }
     return (
         <motion.div
@@ -18,27 +48,27 @@ const AddRecipe = () => {
             <form onSubmit={handleAddRecipe} className="space-y-6">
                 <div>
                     <label className="block text-gray-700">Image URL</label>
-                    <input type="text" placeholder="Enter image URL" className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                    <input type="text" name='image' placeholder="Enter image URL" className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400" />
                 </div>
 
                 <div>
                     <label className="block text-gray-700">Title</label>
-                    <input type="text" placeholder="Recipe title" className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                    <input type="text" name='title' placeholder="Recipe title" className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400" />
                 </div>
 
                 <div>
                     <label className="block text-gray-700">Ingredients</label>
-                    <textarea placeholder="List ingredients..." className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
+                    <textarea placeholder="List ingredients..." name='ingredients' className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
                 </div>
 
                 <div>
                     <label className="block text-gray-700">Instructions</label>
-                    <textarea placeholder="Write instructions..." className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
+                    <textarea placeholder="Write instructions..." name='instructions' className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
                 </div>
 
                 <div>
                     <label className="block text-gray-700">Cuisine Type</label>
-                    <select className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <select name='cuisine' className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400">
                         <option>Italian</option>
                         <option>Mexican</option>
                         <option>Indian</option>
@@ -49,7 +79,7 @@ const AddRecipe = () => {
 
                 <div>
                     <label className="block text-gray-700">Preparation Time (in minutes)</label>
-                    <input type="number" placeholder="e.g. 30" className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                    <input type="number" name='prepTime' placeholder="e.g. 30" className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400" />
                 </div>
 
                 <div>
@@ -57,7 +87,7 @@ const AddRecipe = () => {
                     <div className="flex flex-wrap gap-4">
                         {['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'].map((category) => (
                             <label key={category} className="flex items-center gap-2">
-                                <input type="checkbox" value={category} className="accent-orange-400" />
+                                <input type="checkbox" name="categories" value={category} className="accent-orange-400" />
                                 {category}
                             </label>
                         ))}
