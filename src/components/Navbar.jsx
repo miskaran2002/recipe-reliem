@@ -9,6 +9,7 @@ const Navbar = () => {
         { name: 'Home', path: '/' },
         { name: 'Add Recipe', path: '/addRecipe' },
         { name: 'Update Recipe', path: '/updateRecipe' },
+        { name: 'All Recipes', path: '/allRecipes' },
     ];
 
     return (
