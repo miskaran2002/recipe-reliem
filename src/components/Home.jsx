@@ -5,6 +5,7 @@ import ThemeSlider from './ThemeSlider';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import WhyChooseUs from './WhyChooseUs';
+import HowItWorks from './HowItWorks';
 
 const Home = () => {
     const recipes=useLoaderData();
@@ -30,6 +31,9 @@ const Home = () => {
 
             <div>
                 <WhyChooseUs></WhyChooseUs>
+            </div>
+            <div>
+                <HowItWorks></HowItWorks>
             </div>
 
             <div>
