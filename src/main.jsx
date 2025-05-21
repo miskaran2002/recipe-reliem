@@ -12,6 +12,7 @@ import Home from './components/Home.jsx';
 import AddRecipe from './components/AddRecipe.jsx';
 import UpdateRecipe from './components/UpdateRecipe.jsx';
 import AllRecipes from './components/AllRecipes.jsx';
+import RecipeDetails from './components/RecipeDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,12 @@ const router = createBrowserRouter([
       {
         path:'addRecipe',
         Component:AddRecipe
+      },
+      {
+        path:'recipe/:id',
+        loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        Component:RecipeDetails,
+
       },
       {
         path:"updateRecipe",

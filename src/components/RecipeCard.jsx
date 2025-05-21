@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 
 const RecipeCard = ({ recipe }) => {
@@ -62,13 +62,14 @@ const RecipeCard = ({ recipe }) => {
                 >
                     ❤️ {likes} Likes
                 </p>
-
-                <button
-                    onClick={() => navigate(`/recipes/${_id}`)}
-                    className="mt-3 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-sm transition"
-                >
-                    View Details
-                </button>
+                <Link to={`/recipe/${_id}`}>
+                    <button
+                        className="mt-3 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-sm transition"
+                    >
+                        View Details
+                    </button>
+                </Link>
+               
             </div>
         </motion.div>
     );
