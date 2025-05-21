@@ -16,7 +16,7 @@ import UpdateRecipe from './components/UpdateRecipe.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: MainLayout,
+    element: <MainLayout></MainLayout>,
     children:[
       {
         index: true,
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
 
       },
       {
-        path:"addRecipe",
+        path:'addRecipe',
         Component:AddRecipe
       },
       {
