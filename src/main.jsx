@@ -17,6 +17,9 @@ import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
 import PrivateRoute from './Provider/PrivateRoute.jsx';
+import ErrorPage from './ErrorPage.jsx';
+import MyRecipes from './components/MyRecipes.jsx';
+import { ThemeProvider } from './components/ThemeContext.jsx';
 
 
 
@@ -24,56 +27,71 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    children:[
+    children: [
       {
         index: true,
         loader: () => fetch('http://localhost:3000/recipes'),
-        Component:Home
+        Component: Home
 
       },
       {
-        path:'allRecipes',
+        path: 'allRecipes',
         loader: () => fetch('http://localhost:3000/recipes'),
-        Component:AllRecipes,
+        Component: AllRecipes,
       },
 
       {
-        path:'addRecipe',
-        element:<PrivateRoute>
+        path: 'addRecipe',
+        element: <PrivateRoute>
           <AddRecipe></AddRecipe>
         </PrivateRoute>
       },
       {
-        path:'recipe/:id',
-        loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
-        Component:RecipeDetails,
+        path: 'recipe/:id',
+        loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        element: <PrivateRoute>
+          <RecipeDetails></RecipeDetails>
+        </PrivateRoute>
 
       },
       {
-        path:"updateRecipe/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
-        Component:UpdateRecipe,
+        path: "updateRecipe/:id",
+        loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        Component: UpdateRecipe,
       },
       {
-        path:"/login",
-        Component:Login,
+        path:'myRecipes',
+        element : <MyRecipes></MyRecipes>,
+      },
+
+      {
+        path: "/login",
+        Component: Login,
 
       },
       {
-        path:"/register",
-        Component:Register,
+        path: "/register",
+        Component: Register,
 
-      }
+      },
+      
 
     ]
-
+  
   },
+
+  {
+    path: "/*",
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <AuthProvider> 
-      <RouterProvider router={router} />
-    </AuthProvider> 
+   <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+   </ThemeProvider>
   </StrictMode>,
 )

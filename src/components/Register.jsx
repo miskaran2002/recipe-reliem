@@ -1,13 +1,15 @@
 import React, { use } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router';
+import { Link, Navigate } from 'react-router';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { div } from 'framer-motion/client';
 import { AuthContext } from '../Provider/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-    const {createUser,setUser}=use(AuthContext);
+    const { createUser, setUser } = use(AuthContext);
     const handleRegister = (event) => {
         event.preventDefault();
         console.log(event.target);
@@ -16,29 +18,35 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photo = form.photo.value;
-        console.log({name, email, password, photo});
+        console.log({ name, email, password, photo });
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 // console.log(user);
-                setUser(user);
+                setUser({ ...user, displayName: name, photoURL: photo });
+                toast.success("Registration successfully done!");
+                alert("Registration successfully done!")
+                setTimeout(() => {
+                    Navigate(location.state || "/");
+                }, 1000);
             })
             .catch(error => {
                 console.error('Error creating user:', error);
             });
 
     }
-        
 
-        // Add your registration logic here
 
-    
+    // Add your registration logic here
+
+
 
     return (
         <div>
             <div>
                 <Navbar></Navbar>
             </div>
+            <ToastContainer />
             <div className='flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-orange-200'>
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}

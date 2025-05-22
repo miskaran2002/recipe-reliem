@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router';
+import { NavLink, Link, useNavigate } from 'react-router'; // ✅ Corrected to 'react-router-dom'
 import { Menu, X } from 'lucide-react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { RiLogoutCircleLine } from 'react-icons/ri';
 import { AuthContext } from '../Provider/AuthProvider';
+// import ThemeSwitcher from './components/ThemeSwitcher';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ const Navbar = () => {
         { name: 'Home', path: '/' },
         { name: 'Add Recipe', path: '/addRecipe' },
         { name: 'All Recipes', path: '/allRecipes' },
+        { name: 'My Recipes', path: '/myRecipes' },
         !user && {
             name: (
                 <span className="flex items-center gap-1">
@@ -39,7 +41,7 @@ const Navbar = () => {
             ),
             path: '#',
         },
-    ].filter(Boolean); // remove falsy (null) items when user is logged in/out
+    ].filter(Boolean); // remove falsy items
 
     return (
         <nav className="bg-orange-500 text-white shadow-md">
@@ -64,6 +66,9 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     ))}
+                    {/* <li>
+                        <ThemeSwitcher /> {/* ✅ Added here for desktop */}
+                    {/* </li> */}
                     {user && (
                         <li className="flex items-center gap-2">
                             <img
@@ -96,6 +101,9 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     ))}
+                    <li>
+                        <ThemeSwitcher /> {/* ✅ Added here for mobile */}
+                    </li>
                     {user && (
                         <li className="flex items-center gap-2 px-3">
                             <img

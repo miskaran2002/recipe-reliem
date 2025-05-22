@@ -1,47 +1,54 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 import RecipeCard from './RecipeCard';
-import { useLoaderData } from 'react-router';
-import { div } from 'framer-motion/client';
-import Footer from './Footer';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
+const MyRecipes = () => {
+    const { user } = useContext(AuthContext);
+    const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-const AllRecipes = () => {
-    const recipes = useLoaderData();
-    console.log('recipes:', recipes);
-    
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:3000/recipes?email=${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setRecipes(data);
+                    setLoading(false);
+                })
+                .catch(() => setLoading(false));
+        }
+    }, [user]);
 
-    if (!recipes || !Array.isArray(recipes)) {
-        return <div className="text-center text-red-600 font-semibold mt-10">No recipes found or error loading data.</div>;
+    if (loading) {
+        return <div className="text-center mt-10 text-blue-500 font-semibold">Loading your recipes...</div>;
+    }
+
+    if (!recipes.length) {
+        return <div className="text-center mt-10 text-red-600 font-semibold">No recipes found for your account.</div>;
     }
 
     return (
-
-
-      <div>
         <div>
-            <Navbar></Navbar>
-            
-        </div>
+            <Navbar />
 
             <div className="text-center mb-8 mt-4">
-                <h2 className="text-4xl font-bold text-orange-600 mb-2">All Delicious Recipes 🍽️</h2>
+                <h2 className="text-4xl font-bold text-green-600 mb-2">My Recipes 🧑‍🍳</h2>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                    Discover a variety of handpicked recipes from all over the world. Whether you're looking for a quick snack or a gourmet dinner, we've got something tasty waiting for you!
+                    Here are all the recipes you've shared with the world. Keep cooking and keep creating!
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 px-4">
                 {recipes.map(recipe => (
                     <RecipeCard recipe={recipe} key={recipe._id} />
                 ))}
             </div>
 
-            <div>
-                <Footer></Footer>
-            </div>
-      </div>
-
+            <Footer />
+        </div>
     );
 };
 
-export default AllRecipes;
+export default MyRecipes;

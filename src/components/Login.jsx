@@ -5,6 +5,11 @@ import { div } from 'framer-motion/client';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { AuthContext } from '../Provider/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+
+
 
 
 const Login = () => {
@@ -18,10 +23,12 @@ const Login = () => {
         console.log({email, password});
         signIn(email, password)
             .then(result => {
+                toast.success("Login successfully!"); 
                 const user = result.user;
                 console.log(user);
             })
             .catch(error => {
+                 toast.error("Login failed. Please check your credentials.");
                 console.error('Error creating user:', error);
             });
        
@@ -33,6 +40,7 @@ const Login = () => {
         <div>
             <Navbar></Navbar>
         </div>
+          <ToastContainer /> 
             <div className='flex justify-center items-center min-h-screen bg-gradient-to-br from-orange-100 to-yellow-200'>
 
                 <motion.div

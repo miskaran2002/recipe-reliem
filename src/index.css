@@ -1,0 +1,26 @@
+/* index.css */
+:root {
+    --bg: white;
+    --text: black;
+}
+
+.dark {
+    --bg: #1f2937;
+    --text: white;
+}
+
+.blue {
+    --bg: #dbeafe;
+    --text: #1e3a8a;
+}
+
+.green {
+    --bg: #dcfce7;
+    --text: #065f46;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s, color 0.3s;
+}

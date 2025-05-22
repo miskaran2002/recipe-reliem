@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { use } from 'react';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import { div } from 'framer-motion/client';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const AddRecipe = () => {
-
+    const {user}=use(AuthContext);
     const handleAddRecipe = e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const newRecipe = Object.fromEntries(formData.entries());
+        newRecipe.ownerEmail=user?.email;
         console.log(newRecipe);
         form.reset();
         // send recipe data to server
