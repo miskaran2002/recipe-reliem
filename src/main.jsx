@@ -13,6 +13,9 @@ import AddRecipe from './components/AddRecipe.jsx';
 import UpdateRecipe from './components/UpdateRecipe.jsx';
 import AllRecipes from './components/AllRecipes.jsx';
 import RecipeDetails from './components/RecipeDetails.jsx';
+import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -46,6 +49,16 @@ const router = createBrowserRouter([
         path:"updateRecipe/:id",
         loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
         Component:UpdateRecipe,
+      },
+      {
+        path:"/login",
+        Component:Login,
+
+      },
+      {
+        path:"/register",
+        Component:Register,
+
       }
 
     ]

@@ -27,7 +27,7 @@ const AllRecipes = () => {
                     Discover a variety of handpicked recipes from all over the world. Whether you're looking for a quick snack or a gourmet dinner, we've got something tasty waiting for you!
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4">
                 {recipes.map(recipe => (
                     <RecipeCard recipe={recipe} key={recipe._id} />
                 ))}
