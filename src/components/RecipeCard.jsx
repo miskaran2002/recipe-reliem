@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const RecipeCard = ({ recipe }) => {
     const navigate = useNavigate();
-    const { _id, image, title, cuisineType, likes: initialLikes = 0 } = recipe;
+    const { _id, image, title, cuisine, likes: initialLikes = 0 } = recipe;
 
     const [likes, setLikes] = useState(initialLikes);
     const [isLiking, setIsLiking] = useState(false);
@@ -53,7 +53,7 @@ const RecipeCard = ({ recipe }) => {
 
             <div className="p-4 space-y-2">
                 <h3 className="text-xl font-bold text-gray-800 truncate">{title}</h3>
-                <p className="text-gray-600 text-sm">Cuisine: {cuisineType}</p>
+                <p className="text-gray-600 text-sm">Cuisine: {cuisine}</p>
 
                 <p
                     className="text-gray-600 text-sm cursor-pointer hover:text-orange-500 transition"
