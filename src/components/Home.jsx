@@ -15,7 +15,7 @@ const Home = () => {
 
             <div>
                 <Navbar></Navbar>
-            </div>
+            </div> 
 
             <div className=''>
                 <ThemeSlider></ThemeSlider>
@@ -23,13 +23,13 @@ const Home = () => {
             </div>
 
             
-            {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
                     recipes.map(recipe=><RecipeCard recipe={recipe} key={recipe._id}></RecipeCard>)
                 }
-            </div> */}
+            </div> 
 
-            <div>
+             <div>
                 <WhyChooseUs></WhyChooseUs>
             </div>
             <div>
@@ -38,7 +38,7 @@ const Home = () => {
 
             <div>
                 <Footer></Footer>
-            </div>
+            </div> 
         </div>
     );
 };

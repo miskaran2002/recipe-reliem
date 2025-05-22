@@ -5,9 +5,11 @@ import { div } from 'framer-motion/client';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
+
 const AllRecipes = () => {
     const recipes = useLoaderData();
     console.log('recipes:', recipes);
+    
 
     if (!recipes || !Array.isArray(recipes)) {
         return <div className="text-center text-red-600 font-semibold mt-10">No recipes found or error loading data.</div>;
@@ -19,6 +21,7 @@ const AllRecipes = () => {
       <div>
         <div>
             <Navbar></Navbar>
+            
         </div>
 
             <div className="text-center mb-8 mt-4">

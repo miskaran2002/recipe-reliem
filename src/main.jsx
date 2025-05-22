@@ -15,6 +15,7 @@ import AllRecipes from './components/AllRecipes.jsx';
 import RecipeDetails from './components/RecipeDetails.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
+import AuthProvider from './Provider/AuthProvider.jsx';
 
 
 
@@ -68,6 +69,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+     <AuthProvider> 
+      <RouterProvider router={router} />
+    </AuthProvider> 
   </StrictMode>,
 )

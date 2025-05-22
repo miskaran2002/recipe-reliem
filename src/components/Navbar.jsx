@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router'; 
+import React, { useContext, useState } from 'react';
+import { NavLink, Link, useNavigate } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { RiLogoutCircleLine } from 'react-icons/ri';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                navigate('/');
+            })
+            .catch((err) => console.error(err));
+    };
 
     const navItems = [
         { name: 'Home', path: '/' },
         { name: 'Add Recipe', path: '/addRecipe' },
         { name: 'All Recipes', path: '/allRecipes' },
-        {
+        !user && {
             name: (
                 <span className="flex items-center gap-1">
                     <FaSignInAlt className="text-lg" /> Login
@@ -19,16 +30,16 @@ const Navbar = () => {
             ),
             path: '/login',
         },
-        {
+        !user && { name: 'Register', path: '/register' },
+        user && {
             name: (
-                <span className="flex items-center gap-1">
-                    <RiLogoutCircleLine  className="text-lg" /> Logout
-                </span>
+                <button onClick={handleLogout} className="flex items-center gap-1">
+                    <RiLogoutCircleLine className="text-lg" /> Logout
+                </button>
             ),
-            path: '/',
+            path: '#',
         },
-        { name: 'Register', path: '/register' },
-    ];
+    ].filter(Boolean); // remove falsy (null) items when user is logged in/out
 
     return (
         <nav className="bg-orange-500 text-white shadow-md">
@@ -39,8 +50,8 @@ const Navbar = () => {
 
                 {/* Desktop Nav */}
                 <ul className="hidden md:flex items-center gap-6 font-medium">
-                    {navItems.map((item) => (
-                        <li key={item.path}>
+                    {navItems.map((item, index) => (
+                        <li key={index}>
                             <NavLink
                                 to={item.path}
                                 className={({ isActive }) =>
@@ -53,17 +64,16 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     ))}
-                    {/* Profile Avatar */}
-                    <li>
-                        <NavLink to="/profile">
+                    {user && (
+                        <li className="flex items-center gap-2">
                             <img
-                                src="https://i.ibb.co/2t4D2YH/avatar.png"
+                                src={user.photoURL || 'https://i.ibb.co/2t4D2YH/avatar.png'}
                                 alt="Avatar"
-                                className="w-9 h-9 rounded-full border-2 border-white hover:border-orange-200 transition"
-                                title="My Profile"
+                                className="w-9 h-9 rounded-full border-2 border-white"
+                                title={user.displayName}
                             />
-                        </NavLink>
-                    </li>
+                        </li>
+                    )}
                 </ul>
 
                 {/* Mobile Button */}
@@ -75,8 +85,8 @@ const Navbar = () => {
             {/* Mobile Nav */}
             {isOpen && (
                 <ul className="md:hidden px-4 pb-4 space-y-2 animate-slide-down origin-top bg-orange-400">
-                    {navItems.map((item) => (
-                        <li key={item.path}>
+                    {navItems.map((item, index) => (
+                        <li key={index}>
                             <NavLink
                                 to={item.path}
                                 className="block py-2 px-3 rounded hover:bg-orange-300"
@@ -86,21 +96,16 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     ))}
-                    {/* Profile link for mobile */}
-                    <li>
-                        <NavLink
-                            to="/profile"
-                            className="block py-2 px-3 rounded hover:bg-orange-300 flex items-center gap-2"
-                            onClick={() => setIsOpen(false)}
-                        >
+                    {user && (
+                        <li className="flex items-center gap-2 px-3">
                             <img
-                                src="https://i.ibb.co/2t4D2YH/avatar.png"
+                                src={user.photoURL || 'https://i.ibb.co/2t4D2YH/avatar.png'}
                                 alt="Avatar"
                                 className="w-6 h-6 rounded-full border border-white"
                             />
-                            My Profile
-                        </NavLink>
-                    </li>
+                            <span>{user.displayName || 'My Profile'}</span>
+                        </li>
+                    )}
                 </ul>
             )}
         </nav>

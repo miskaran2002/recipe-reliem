@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { use } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { div } from 'framer-motion/client';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
+    const {createUser,setUser}=use(AuthContext);
+    const handleRegister = (event) => {
+        event.preventDefault();
+        console.log(event.target);
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photo = form.photo.value;
+        console.log({name, email, password, photo});
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                setUser(user);
+            })
+            .catch(error => {
+                console.error('Error creating user:', error);
+            });
+
+    }
+        
+
+        // Add your registration logic here
+
+    
 
     return (
         <div>
@@ -21,7 +48,7 @@ const Register = () => {
                 >
                     <h1 className="text-3xl font-bold text-center text-orange-600">Create an Account ✨</h1>
 
-                    <form className="space-y-5">
+                    <form onSubmit={handleRegister} className="space-y-5">
                         <div>
                             <label className="block mb-1 text-sm font-medium text-gray-700">Name</label>
                             <input

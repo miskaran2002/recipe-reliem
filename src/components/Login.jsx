@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { use } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { div } from 'framer-motion/client';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { AuthContext } from '../Provider/AuthProvider';
 
 
 const Login = () => {
+    const {signIn} = use(AuthContext);
+    const handleLogin = (event) => {
+        event.preventDefault();
+        console.log(event.target);
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log({email, password});
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error('Error creating user:', error);
+            });
+       
+    }
+
+
     return (
        <div>  
         <div>
@@ -22,12 +43,12 @@ const Login = () => {
                 >
                     <h1 className="text-3xl font-bold text-center text-orange-600">Welcome Back 👋</h1>
 
-                    <form className="space-y-5">
+                    <form onSubmit={handleLogin} className="space-y-5">
                         <div>
                             <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">Email</label>
                             <input
                                 type="email"
-                                id="email"
+                                name="email"
                                 className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"
                                 placeholder="Enter your email"
                                 required
@@ -38,7 +59,7 @@ const Login = () => {
                             <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">Password</label>
                             <input
                                 type="password"
-                                id="password"
+                                name="password"
                                 className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"
                                 placeholder="Enter your password"
                                 required
