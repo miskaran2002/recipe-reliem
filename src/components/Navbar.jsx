@@ -8,9 +8,10 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout,photo } = useContext(AuthContext);
     const navigate = useNavigate();
-    // console.log(user.photo);
+
+     console.log(photo);
 
     const handleLogout = () => {
         logout()

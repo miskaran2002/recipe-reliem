@@ -23,7 +23,7 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 toast.success("Login successful!");
-                navigate(from, { replace: true });
+                navigate(from, { replace: true },3500);
             })
             .catch(error => {
                 toast.error("Login failed. Please check your credentials.");

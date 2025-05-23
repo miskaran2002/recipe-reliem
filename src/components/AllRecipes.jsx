@@ -72,7 +72,7 @@ const AllRecipes = () => {
                 <p className="text-center text-gray-500">No recipes found for this cuisine.</p>
             ) : (
                 <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 max-w-6xl mx-auto px-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 mb-4 max-w-6xl mx-auto px-4">
                         {filteredRecipes.slice(0, visibleCount).map((recipe) => (
                             <RecipeCard recipe={recipe} key={recipe._id} />
                         ))}

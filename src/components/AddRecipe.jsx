@@ -21,6 +21,7 @@ const AddRecipe = () => {
 
         // Add logged in user's email
         newRecipe.ownerEmail = user?.email;
+        newRecipe.ownerLike = user?.ownerLike;
 
         console.log(newRecipe);
 

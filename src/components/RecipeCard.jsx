@@ -16,7 +16,7 @@ const RecipeCard = ({ recipe }) => {
         setIsLiking(true);
 
         try {
-            const res = await fetch(`http://localhost:5000/recipes/${_id}/like`, {
+            const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
             });

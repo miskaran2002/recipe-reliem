@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import WhyChooseUs from './WhyChooseUs';
 import HowItWorks from './HowItWorks';
+import TopRecipes from './TopRecipes';
 
 const Home = () => {
     const recipes=useLoaderData();
@@ -20,6 +21,12 @@ const Home = () => {
             <div className=''>
                 <ThemeSlider></ThemeSlider>
 
+            </div>
+
+
+            <div>
+                <TopRecipes></TopRecipes>
+                
             </div>
 
             
