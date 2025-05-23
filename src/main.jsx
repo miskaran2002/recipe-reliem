@@ -91,10 +91,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <ThemeProvider>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
-   </ThemeProvider>
   </StrictMode>,
 )

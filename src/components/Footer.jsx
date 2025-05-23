@@ -17,7 +17,8 @@ const Footer = () => {
                 <ul className="flex flex-wrap justify-center gap-6 font-medium">
                     <li><Link to="/" className="hover:text-orange-100">Home</Link></li>
                     <li><Link to="/addRecipe" className="hover:text-orange-100">Add Recipe</Link></li>
-                    <li><Link to="/updateRecipe" className="hover:text-orange-100">Update Recipe</Link></li>
+                    <li><Link to="/allRecipes" className="hover:text-orange-100">All Recipes</Link></li>
+                    <li><Link to="/myRecipes" className="hover:text-orange-100">My Recipes</Link></li>
                 </ul>
 
                 {/* Social Icons */}
