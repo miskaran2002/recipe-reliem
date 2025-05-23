@@ -19,7 +19,7 @@ import AuthProvider from './Provider/AuthProvider.jsx';
 import PrivateRoute from './Provider/PrivateRoute.jsx';
 import ErrorPage from './ErrorPage.jsx';
 import MyRecipes from './components/MyRecipes.jsx';
-import { ThemeProvider } from './components/ThemeContext.jsx';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 
 
@@ -60,11 +60,11 @@ const router = createBrowserRouter([
         Component: UpdateRecipe,
       },
       {
-        path:'myRecipes',
-        element : <PrivateRoute>
+        path: 'myRecipes',
+        element: <PrivateRoute>
           <MyRecipes></MyRecipes>,
         </PrivateRoute>
-       
+
       },
 
       {
@@ -77,10 +77,10 @@ const router = createBrowserRouter([
         Component: Register,
 
       },
-      
+
 
     ]
-  
+
   },
 
   {
@@ -91,8 +91,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <AuthProvider>
+    <AuthProvider>
+      <ThemeProvider>
         <RouterProvider router={router} />
-      </AuthProvider>
+      </ThemeProvider>
+    </AuthProvider>
   </StrictMode>,
 )
