@@ -1,52 +1,81 @@
-import React, { use } from 'react';
+import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link, Navigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { div } from 'framer-motion/client';
 import { AuthContext } from '../Provider/AuthProvider';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Register = () => {
-    const { createUser, setUser } = use(AuthContext);
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [passwordError, setPasswordError] = useState('');
+
     const handleRegister = (event) => {
         event.preventDefault();
-        console.log(event.target);
         const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        const photo = form.photo.value;
-        console.log({ name, email, password, photo });
+        const formData = new FormData(form);
+        const { email, password, ...userProfile } = Object.fromEntries(formData.entries());
+
+        // Password validation
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setPasswordError('Password must be at least 6 characters and include uppercase and lowercase letters.');
+            return;
+        } else {
+            setPasswordError('');
+        }
+
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
-                setUser({ ...user, displayName: name, photoURL: photo });
-                toast.success("Registration successfully done!");
-                alert("Registration successfully done!")
-                setTimeout(() => {
-                    Navigate(location.state || "/");
-                }, 1000);
+
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, ...userProfile }),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Registered Successfully!",
+                                timer: 1500,
+                                showConfirmButton: false,
+                                position: 'top-end'
+                            });
+                            navigate('/');
+                        }
+                    });
             })
             .catch(error => {
-                console.error('Error creating user:', error);
+                toast.error(error.message, {
+                    position: 'top-center',
+                    autoClose: 3000,
+                });
             });
+    };
 
-    }
-
-
-    // Add your registration logic here
-
-
+    const handleGoogleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithGoogle(provider)
+            .then(() => {
+                navigate('/');
+            })
+            .catch(error => {
+                toast.error(error.message, {
+                    position: 'top-center',
+                    autoClose: 3000,
+                });
+            });
+    };
 
     return (
         <div>
-            <div>
-                <Navbar></Navbar>
-            </div>
-            <ToastContainer />
+            <Navbar />
             <div className='flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-orange-200'>
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -98,6 +127,7 @@ const Register = () => {
                                 className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400"
                                 required
                             />
+                            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                         </div>
 
                         <motion.button
@@ -110,6 +140,13 @@ const Register = () => {
                         </motion.button>
                     </form>
 
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="w-full mt-3 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition"
+                    >
+                        Sign Up with Google
+                    </button>
+
                     <p className="text-sm text-center text-gray-600">
                         Already have an account?{' '}
                         <Link to="/login" className="text-orange-500 font-medium hover:underline">
@@ -118,9 +155,7 @@ const Register = () => {
                     </p>
                 </motion.div>
             </div>
-            <div>
-                <Footer></Footer>
-            </div>
+            <Footer />
         </div>
     );
 };

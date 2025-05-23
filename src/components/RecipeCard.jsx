@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 
 const RecipeCard = ({ recipe }) => {
+    console.log(recipe);
     const navigate = useNavigate();
     const { _id, image, title, cuisine, likes: initialLikes = 0 } = recipe;
 

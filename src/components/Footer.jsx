@@ -54,7 +54,7 @@ const Footer = () => {
 
             {/* Bottom Text */}
             <div className="text-center text-sm mt-6 text-orange-100">
-                &copy; {new Date().getFullYear()} MyRecipes. All rights reserved.
+                &copy; {new Date().getFullYear()} RecipeRealm. All rights reserved.
             </div>
         </footer>
     );

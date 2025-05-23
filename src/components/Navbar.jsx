@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router'; // ✅ Corrected to 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router'; 
 import { Menu, X } from 'lucide-react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { RiLogoutCircleLine } from 'react-icons/ri';
 import { AuthContext } from '../Provider/AuthProvider';
-// import ThemeSwitcher from './components/ThemeSwitcher';
+//  import ThemeSwitcher from './components/ThemeSwitcher';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
+    // console.log(user.photo);
 
     const handleLogout = () => {
         logout()
@@ -66,13 +67,12 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     ))}
-                    {/* <li>
-                        <ThemeSwitcher /> {/* ✅ Added here for desktop */}
-                    {/* </li> */}
+                     
                     {user && (
                         <li className="flex items-center gap-2">
                             <img
-                                src={user.photoURL || 'https://i.ibb.co/2t4D2YH/avatar.png'}
+                                src={user.photo || 'https://i.ibb.co/2t4D2YH/avatar.png'}
+                                
                                 alt="Avatar"
                                 className="w-9 h-9 rounded-full border-2 border-white"
                                 title={user.displayName}
@@ -101,9 +101,7 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     ))}
-                    <li>
-                        <ThemeSwitcher /> {/* ✅ Added here for mobile */}
-                    </li>
+                   
                     {user && (
                         <li className="flex items-center gap-2 px-3">
                             <img
