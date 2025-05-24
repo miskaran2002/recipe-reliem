@@ -7,36 +7,41 @@ import Footer from './Footer';
 import WhyChooseUs from './WhyChooseUs';
 import HowItWorks from './HowItWorks';
 import TopRecipes from './TopRecipes';
+import HeroSection from './HeroSection';
 
 const Home = () => {
-    const recipes=useLoaderData();
-     console.log(recipes);
+    const recipes = useLoaderData();
+    console.log(recipes);
     return (
         <div>
 
             <div>
                 <Navbar></Navbar>
-            </div> 
+            </div>
+
+
+
+
 
             <div className=''>
                 <ThemeSlider></ThemeSlider>
 
             </div>
 
+            <div>
+                <HeroSection></HeroSection>
+            </div>
+
 
             <div>
                 <TopRecipes></TopRecipes>
-                
+
             </div>
 
-            
-             {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                {
-                    recipes.map(recipe=><RecipeCard recipe={recipe} key={recipe._id}></RecipeCard>)
-                }
-            </div>  */}
 
-             <div>
+
+
+            <div>
                 <WhyChooseUs></WhyChooseUs>
             </div>
             <div>
@@ -45,7 +50,7 @@ const Home = () => {
 
             <div>
                 <Footer></Footer>
-            </div> 
+            </div>
         </div>
     );
 };
