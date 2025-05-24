@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const RecipeCard = ({ recipe }) => {
     console.log(recipe);
@@ -10,9 +11,13 @@ const RecipeCard = ({ recipe }) => {
     const [likes, setLikes] = useState(initialLikes);
     const [isLiking, setIsLiking] = useState(false);
 
+    const {user}=useContext(AuthContext);
+
+    const isOwnRecipe = user?.email === recipe.ownerEmail;
+
     const handleLike = async () => {
-        if (isLiking) return; // prevent multiple clicks
-        setLikes(prev => prev + 1); // Optimistic UI
+        if (isLiking || isOwnRecipe) return; 
+        setLikes(prev => prev + 1); 
         setIsLiking(true);
 
         try {
@@ -30,7 +35,7 @@ const RecipeCard = ({ recipe }) => {
             }
         } catch (err) {
             console.error(err);
-            setLikes(prev => prev - 1); // Rollback
+            setLikes(prev => prev - 1); 
             alert('Server error. Please try again later.');
         } finally {
             setIsLiking(false);
