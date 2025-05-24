@@ -7,7 +7,7 @@ const TopRecipes = () => {
 
     useEffect(() => {
         // Fetch top-liked recipes on component mount
-        fetch('https://recipe-realm-server-gamma.vercel.app//top-liked')
+        fetch('https://server-side-assi-9-production.up.railway.app/recipes/top-liked')
             .then(res => res.json())
             .then(data => setRecipes(data))
             .catch(error => console.error('Error fetching top recipes:', error));

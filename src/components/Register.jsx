@@ -38,7 +38,7 @@ const Register = () => {
                     photoURL: photo
                 }).then(() => {
                     // Save user to backend
-                    fetch('http://localhost:3000/users', {
+                    fetch('https://server-side-assi-9-production.up.railway.app/users', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email, name, photo }),
@@ -80,7 +80,7 @@ const Register = () => {
                 const { email, displayName, photoURL } = user;
 
                 // Save to backend (if needed)
-                fetch('http://localhost:3000/users', {
+                fetch('https://server-side-assi-9-production.up.railway.app/users', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, name: displayName, photo: photoURL }),

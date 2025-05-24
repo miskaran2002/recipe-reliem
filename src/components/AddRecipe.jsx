@@ -26,7 +26,7 @@ const AddRecipe = () => {
         console.log(newRecipe);
 
         // Send recipe to backend
-        fetch('https://recipe-realm-server-gamma.vercel.app/', {
+        fetch('https://server-side-assi-9-production.up.railway.app/recipes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
