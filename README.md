@@ -1,12 +1,37 @@
-# React + Vite
+🍲 Recipe Realm
+Recipe Realm is a full-featured web application where users can explore, create, like, update, and manage their own culinary creations. Built with the MERN stack, it provides a rich, responsive, and interactive experience for food lovers and home chefs alike.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Features
+🔐 User Authentication
 
-Currently, two official plugins are available:
+Email/password registration & login
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Google OAuth login
 
-## Expanding the ESLint configuration
+Auth-protected routes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+📸 Recipe Management
+
+Add, update, delete personal recipes
+
+Like other users' recipes (cannot like your own!)
+
+Categorized by cuisine, prep time, and meal type
+
+❤️ Like System
+
+Prevents users from liking their own recipes
+
+Real-time like count
+
+🎨 Responsive Design
+
+Works beautifully across mobile, tablet, and desktop
+
+🌗 Theme Toggle
+
+Light, dark, and custom themes using Context API
+
+🛠️ Tech Stack
+Frontend	Backend
+React.js, React Router, Tailwind CSS, Framer Motion, SweetAlert2	Node.js, Express.js, MongoDB
