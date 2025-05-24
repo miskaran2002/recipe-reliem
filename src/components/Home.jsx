@@ -8,10 +8,11 @@ import WhyChooseUs from './WhyChooseUs';
 import HowItWorks from './HowItWorks';
 import TopRecipes from './TopRecipes';
 import HeroSection from './HeroSection';
+import TypewriterHeading from './TypewriterHeading';
 
 const Home = () => {
     const recipes = useLoaderData();
-    console.log(recipes);
+    // console.log(recipes);
     return (
         <div>
 
@@ -20,12 +21,19 @@ const Home = () => {
             </div>
 
 
+            
+
+
 
 
 
             <div className=''>
                 <ThemeSlider></ThemeSlider>
 
+            </div>
+
+            <div>
+                <TypewriterHeading></TypewriterHeading>
             </div>
 
             <div>

@@ -6,7 +6,7 @@ import Footer from './Footer';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const { createUser, signInWithGoogle } = useContext(AuthContext);
@@ -17,7 +17,7 @@ const Register = () => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
-        const { email, password, ...userProfile } = Object.fromEntries(formData.entries());
+        const { email, password, name, photo } = Object.fromEntries(formData.entries());
 
         // Password validation
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -32,24 +32,37 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
 
-                fetch('http://localhost:3000/users', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, ...userProfile }),
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.insertedId) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Registered Successfully!",
-                                timer: 1500,
-                                showConfirmButton: false,
-                                position: 'top-end'
-                            });
-                            navigate('/');
-                        }
+                // Update profile with name and photo
+                updateProfile(user, {
+                    displayName: name,
+                    photoURL: photo
+                }).then(() => {
+                    // Save user to backend
+                    fetch('http://localhost:3000/users', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, name, photo }),
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Registered Successfully!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    position: 'top-end'
+                                });
+                                navigate('/');
+                            }
+                        });
+                }).catch(err => {
+                    toast.error("Profile update failed: " + err.message, {
+                        position: 'top-center',
+                        autoClose: 3000
                     });
+                });
+
             })
             .catch(error => {
                 toast.error(error.message, {
@@ -62,7 +75,17 @@ const Register = () => {
     const handleGoogleSignIn = () => {
         const provider = new GoogleAuthProvider();
         signInWithGoogle(provider)
-            .then(() => {
+            .then(result => {
+                const user = result.user;
+                const { email, displayName, photoURL } = user;
+
+                // Save to backend (if needed)
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, name: displayName, photo: photoURL }),
+                });
+
                 navigate('/');
             })
             .catch(error => {
