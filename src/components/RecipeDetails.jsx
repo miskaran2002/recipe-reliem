@@ -10,7 +10,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 const RecipeDetails = () => {
     const recipe = useLoaderData();
     const navigate = useNavigate();
-    const {user}=useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const {
         _id,
@@ -22,6 +22,7 @@ const RecipeDetails = () => {
         prepTime,
         categories,
         likes = 0,
+        email 
     } = recipe;
 
     const [likeCount, setLikeCount] = useState(likes);
@@ -30,13 +31,19 @@ const RecipeDetails = () => {
     const handleLike = async () => {
         if (isLiked) return;
 
+        // Prevent users from liking their own recipe
+        if (user?.email === creatorEmail) {
+            Swal.fire('Oops!', 'You cannot like your own recipe.', 'info');
+            return;
+        }
+
         try {
             const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ userEmail: user?.email }) // send user email
+                body: JSON.stringify({ userEmail: user?.email })
             });
 
             const data = await res.json();
@@ -57,7 +64,6 @@ const RecipeDetails = () => {
             Swal.fire('Error', 'Something went wrong.', 'error');
         }
     };
-    
 
     const handleDelete = (_id) => {
         Swal.fire({

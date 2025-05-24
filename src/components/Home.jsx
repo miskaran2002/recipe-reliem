@@ -22,7 +22,7 @@ const Home = () => {
 
 
             
-
+            {import.meta.env.VITE_name}
 
 
 
