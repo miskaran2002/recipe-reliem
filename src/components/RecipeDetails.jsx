@@ -22,7 +22,7 @@ const RecipeDetails = () => {
         prepTime,
         categories,
         likes = 0,
-        email 
+        email
     } = recipe;
 
     const [likeCount, setLikeCount] = useState(likes);
@@ -38,7 +38,7 @@ const RecipeDetails = () => {
         }
 
         try {
-            const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
+            const res = await fetch(`https://recipe-realm-server-gamma.vercel.app//${_id}/like`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const RecipeDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/recipes/${_id}`, {
+                fetch(`https://recipe-realm-server-gamma.vercel.app//${_id}`, {
                     method: 'DELETE',
                 })
                     .then((res) => res.json())

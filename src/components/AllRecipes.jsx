@@ -11,7 +11,7 @@ const AllRecipes = () => {
     const [selectedCuisine, setSelectedCuisine] = useState('All');
 
     useEffect(() => {
-        fetch('http://localhost:3000/recipes')
+        fetch('https://recipe-realm-server-gamma.vercel.app/')
             .then((res) => {
                 if (!res.ok) throw new Error('Failed to fetch recipes');
                 return res.json();

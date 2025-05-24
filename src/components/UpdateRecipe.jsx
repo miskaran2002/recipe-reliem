@@ -23,7 +23,7 @@ const UpdateRecipe = () => {
         };
 
         try {
-            const res = await fetch(`http://localhost:3000/recipes/${recipe._id}`, {
+            const res = await fetch(`https://recipe-realm-server-gamma.vercel.app//${recipe._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

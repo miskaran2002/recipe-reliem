@@ -10,7 +10,7 @@ const MyRecipes = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/recipes?email=${user.email}`)
+            fetch(`https://recipe-realm-server-gamma.vercel.app/?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => setRecipes(data));
         }

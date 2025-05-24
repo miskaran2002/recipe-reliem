@@ -7,7 +7,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const AddRecipe = () => {
     const { user } = useContext(AuthContext);
-    
+
 
     const handleAddRecipe = (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ const AddRecipe = () => {
         console.log(newRecipe);
 
         // Send recipe to backend
-        fetch('http://localhost:3000/recipes', {
+        fetch('https://recipe-realm-server-gamma.vercel.app/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

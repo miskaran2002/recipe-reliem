@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 // import RecipeCard if not already imported
-import RecipeCard from '../components/RecipeCard'; 
+import RecipeCard from '../components/RecipeCard';
 
 const TopRecipes = () => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
         // Fetch top-liked recipes on component mount
-        fetch('http://localhost:3000/recipes/top-liked')
+        fetch('https://recipe-realm-server-gamma.vercel.app//top-liked')
             .then(res => res.json())
             .then(data => setRecipes(data))
             .catch(error => console.error('Error fetching top recipes:', error));

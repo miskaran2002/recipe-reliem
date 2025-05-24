@@ -11,17 +11,17 @@ const RecipeCard = ({ recipe }) => {
     const [likes, setLikes] = useState(initialLikes);
     const [isLiking, setIsLiking] = useState(false);
 
-    const {user}=useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const isOwnRecipe = user?.email === recipe.ownerEmail;
 
     const handleLike = async () => {
-        if (isLiking || isOwnRecipe) return; 
-        setLikes(prev => prev + 1); 
+        if (isLiking || isOwnRecipe) return;
+        setLikes(prev => prev + 1);
         setIsLiking(true);
 
         try {
-            const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
+            const res = await fetch(`https://recipe-realm-server-gamma.vercel.app//${_id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
             });
@@ -35,7 +35,7 @@ const RecipeCard = ({ recipe }) => {
             }
         } catch (err) {
             console.error(err);
-            setLikes(prev => prev - 1); 
+            setLikes(prev => prev - 1);
             alert('Server error. Please try again later.');
         } finally {
             setIsLiking(false);
@@ -75,7 +75,7 @@ const RecipeCard = ({ recipe }) => {
                         View Details
                     </button>
                 </Link>
-               
+
             </div>
         </motion.div>
     );

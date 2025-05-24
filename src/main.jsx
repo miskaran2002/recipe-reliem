@@ -30,13 +30,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch('http://localhost:3000/recipes'),
+        loader: () => fetch('https://recipe-realm-server-gamma.vercel.app/'),
         Component: Home
 
       },
       {
         path: 'allRecipes',
-        loader: () => fetch('http://localhost:3000/recipes'),
+        loader: () => fetch('https://recipe-realm-server-gamma.vercel.app/'),
         Component: AllRecipes,
       },
 
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'recipe/:id',
-        loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        loader: ({ params }) => fetch(`https://recipe-realm-server-gamma.vercel.app//${params.id}`),
         element: <PrivateRoute>
           <RecipeDetails></RecipeDetails>
         </PrivateRoute>
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "updateRecipe/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        loader: ({ params }) => fetch(`https://recipe-realm-server-gamma.vercel.app//${params.id}`),
         Component: UpdateRecipe,
       },
       {
