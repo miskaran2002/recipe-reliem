@@ -21,7 +21,7 @@ const RecipeCard = ({ recipe }) => {
         setIsLiking(true);
 
         try {
-            const res = await fetch(`https://server-side-assi-9-production.up.railway.app/recipes/${_id}/like`, {
+            const res = await fetch(`https://recipe-server-beta.vercel.app/recipes/${_id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
             });

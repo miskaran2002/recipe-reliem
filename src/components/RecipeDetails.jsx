@@ -38,7 +38,7 @@ const RecipeDetails = () => {
         }
 
         try {
-            const res = await fetch(`https://server-side-assi-9-production.up.railway.app/recipes/${_id}/like`, {
+            const res = await fetch(`https://recipe-server-beta.vercel.app/recipes/${_id}/like`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,19 +76,30 @@ const RecipeDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://server-side-assi-9-production.up.railway.app/recipes/${_id}`, {
+                fetch(`https://recipe-server-beta.vercel.app/recipes/${_id}`, {
                     method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userEmail: user?.email }) // ✅ Send logged-in user email
                 })
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.deletedCount) {
                             Swal.fire("Deleted!", "Your recipe has been deleted.", "success");
                             navigate('/allRecipes');
+                        } else {
+                            Swal.fire("Failed!", data.message || "You are not authorized to delete this.", "error");
                         }
+                    })
+                    .catch(err => {
+                        console.error("Delete error:", err);
+                        Swal.fire("Error", "Something went wrong.", "error");
                     });
             }
         });
     };
+
 
     return (
         <div>

@@ -10,7 +10,7 @@ const MyRecipes = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`https://server-side-assi-9-production.up.railway.app/recipes?email=${user.email}`)
+            fetch(`https://recipe-server-beta.vercel.app/recipes?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => setRecipes(data));
         }

@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const UpdateRecipe = () => {
     const recipe = useLoaderData();
     const navigate = useNavigate();
     const [updated, setUpdated] = useState(false);
+    const { user } = useContext(AuthContext);
+    console.log(user)
 
     const handleUpdateRecipe = async (e) => {
         e.preventDefault();
@@ -19,11 +23,12 @@ const UpdateRecipe = () => {
             instructions: form.instructions.value,
             cuisine: form.cuisine.value,
             prepTime: form.prepTime.value,
-            categories: Array.from(form.querySelectorAll('input[name="categories"]:checked')).map(input => input.value)
+            categories: Array.from(form.querySelectorAll('input[name="categories"]:checked')).map(input => input.value),
+            userEmail: user?.email
         };
 
         try {
-            const res = await fetch(`https://server-side-assi-9-production.up.railway.app/recipes/${recipe._id}`, {
+            const res = await fetch(`https://recipe-server-beta.vercel.app/recipes/${recipe._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -44,7 +49,7 @@ const UpdateRecipe = () => {
                 Swal.fire({
                     icon: 'info',
                     title: 'No Changes Made',
-                    text: 'You didn’t modify anything.',
+                    text: 'You didn’t modify anything or you are not the owner.',
                     confirmButtonColor: '#f97316'
                 });
             }
@@ -58,6 +63,7 @@ const UpdateRecipe = () => {
             });
         }
     };
+
 
     return (
         <div className="mb-4">
