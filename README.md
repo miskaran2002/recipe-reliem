@@ -42,13 +42,13 @@
 ## 🖼️ Screenshots
 
 ### 🏠 Home Page  
-![Home Screenshot]([https://your-image-link-1.com](https://i.ibb.co/3y3QQJzL/Screenshot-2025-06-26-111735.png))
+![Home Screenshot](https://i.ibb.co/3y3QQJzL/Screenshot-2025-06-26-111735.png))
 
 ### ➕ Add Recipe Form  
-![ALL Recipe Screenshot]([https://your-image-link-2.com](https://i.ibb.co/qMFp8KvY/Screenshot-2025-06-26-111803.png))
+![ALL Recipe Screenshot](https://i.ibb.co/qMFp8KvY/Screenshot-2025-06-26-111803.png))
 
 ### 🍽️ My Recipes Page  
-![My Recipes Screenshot](https://your-image-link-3.comhttps://i.ibb.co/N6sTShVb/Screenshot-2025-06-26-111835.png)
+![My Recipes Screenshot](https://i.ibb.co/N6sTShVb/Screenshot-2025-06-26-111835.png)
 
 > 📌 _Replace the links with your actual screenshots (you can upload to imgbb, Cloudinary, or GitHub)_
 
@@ -56,7 +56,7 @@
 
 ## 🔗 Live Site & Code Repos
 
-- 🔴 **Live Website:** [Recipe Realm Live]([https://your-live-site-link.com](https://recipe-realm-4ea1f.web.app/))  
+- 🔴 **Live Website:** [Recipe Realm Live](https://recipe-realm-4ea1f.web.app/))  
 - 🟡 **Client Repo:** [GitHub Client](https://github.com/yourusername/recipe-realm-client)  
 - 🟢 **Server Repo:** [GitHub Server](https://github.com/yourusername/recipe-realm-server)
 
