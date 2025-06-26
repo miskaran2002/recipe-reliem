@@ -33,7 +33,7 @@ const ThemeSlider = () => {
     }, []);
 
     return (
-        <div className="relative w-full max-w-5xl mx-auto mt-10 mb-10 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="relative w-full max-w-6xl mx-auto mt-10 mb-10 rounded-2xl overflow-hidden shadow-2xl">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={slides[index].id}
@@ -41,12 +41,12 @@ const ThemeSlider = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -100 }}
                     transition={{ duration: 0.6 }}
-                    className="relative h-[300px] md:h-[400px] w-full bg-cover bg-center flex items-center justify-center text-white"
+                    className="relative h-[60vh] w-full bg-cover bg-center flex items-center justify-center text-white"
                     style={{ backgroundImage: `url(${slides[index].image})` }}
                 >
-                    <div className=" bg-opacity-50 p-6 md:p-10 rounded-xl text-center max-w-lg">
-                        <h2 className="text-2xl md:text-4xl text-black font-bold mb-2">{slides[index].title}</h2>
-                        <p className="text-sm md:text-lg text-blue-700">{slides[index].description}</p>
+                    <div className="bg-white/80 p-6 md:p-10 rounded-xl text-center max-w-lg shadow-md">
+                        <h2 className="text-2xl md:text-4xl text-orange-700 font-bold mb-2">{slides[index].title}</h2>
+                        <p className="text-sm md:text-lg text-gray-800">{slides[index].description}</p>
                     </div>
                 </motion.div>
             </AnimatePresence>
@@ -57,8 +57,7 @@ const ThemeSlider = () => {
                     <div
                         key={i}
                         onClick={() => setIndex(i)}
-                        className={`w-3 h-3 rounded-full cursor-pointer ${i === index ? 'bg-white' : 'bg-white/50'
-                            }`}
+                        className={`w-3 h-3 rounded-full cursor-pointer ${i === index ? 'bg-white' : 'bg-white/50'}`}
                     />
                 ))}
             </div>
