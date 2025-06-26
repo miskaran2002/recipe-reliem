@@ -42,10 +42,10 @@
 ## 🖼️ Screenshots
 
 ### 🏠 Home Page  
-![Home Screenshot](https://i.ibb.co/3y3QQJzL/Screenshot-2025-06-26-111735.png))
+![Home Screenshot](https://i.ibb.co/3y3QQJzL/Screenshot-2025-06-26-111735.png)
 
 ### ➕ Add Recipe Form  
-![ALL Recipe Screenshot](https://i.ibb.co/qMFp8KvY/Screenshot-2025-06-26-111803.png))
+![ALL Recipe Screenshot](https://i.ibb.co/qMFp8KvY/Screenshot-2025-06-26-111803.png)
 
 ### 🍽️ My Recipes Page  
 ![My Recipes Screenshot](https://i.ibb.co/N6sTShVb/Screenshot-2025-06-26-111835.png)
