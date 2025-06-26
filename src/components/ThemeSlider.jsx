@@ -33,7 +33,7 @@ const ThemeSlider = () => {
     }, []);
 
     return (
-        <div className="relative w-full max-w-5xl mx-auto mt-10 mb-10 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="relative w-full max-w-6xl mx-auto mt-10 mb-10 rounded-2xl overflow-hidden shadow-2xl">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={slides[index].id}
