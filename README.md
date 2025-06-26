@@ -57,7 +57,7 @@
 ## 🔗 Live Site & Code Repos
 
 - 🔴 **Live Website:** [Recipe Realm Live](https://recipe-realm-4ea1f.web.app/))  
-- 🟡 **Client Repo:** [GitHub Client](https://github.com/yourusername/recipe-realm-client)  
+- 🟡 **Client Repo:** [GitHub Client](https://github.com/miskaran2002/recipe-reliem)  
 - 🟢 **Server Repo:** [GitHub Server](https://github.com/yourusername/recipe-realm-server)
 
 ---
