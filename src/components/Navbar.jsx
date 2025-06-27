@@ -27,9 +27,11 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Home', path: '/' },
+        { name: 'AboutUs', path: '/aboutUs' },
         { name: 'Add Recipe', path: '/addRecipe' },
         { name: 'All Recipes', path: '/allRecipes' },
         { name: 'My Recipes', path: '/myRecipes' },
+       
         !user && {
             name: (
                 <div className="flex items-center gap-1">

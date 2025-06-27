@@ -89,8 +89,7 @@ const AllRecipes = () => {
                         </div>
                     )}
                 </>
-            )}
-
+            )}   
             <Footer />
         </div>
     );

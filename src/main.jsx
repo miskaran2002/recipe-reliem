@@ -20,6 +20,7 @@ import PrivateRoute from './Provider/PrivateRoute.jsx';
 import ErrorPage from './ErrorPage.jsx';
 import MyRecipes from './components/MyRecipes.jsx';
 import { ThemeProvider } from './contexts/ThemeContext';
+import AboutUs from './components/AboutUs.jsx';
 
 
 
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         path: 'allRecipes',
         loader: () => fetch('https://recipe-server-beta.vercel.app/recipes'),
         Component: AllRecipes,
+      },
+      {
+        path:'/aboutUs',
+        element:<AboutUs></AboutUs>
       },
 
       {
