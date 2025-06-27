@@ -9,6 +9,9 @@ import HowItWorks from './HowItWorks';
 import TopRecipes from './TopRecipes';
 import HeroSection from './HeroSection';
 import TypewriterHeading from './TypewriterHeading';
+import OurFeatures from './OurFeatures';
+import FeatureCard from './FeatureCard';
+import RecipeTestimonials from './RecipeTestimonials';
 
 const Home = () => {
     const recipes = useLoaderData();
@@ -16,7 +19,7 @@ const Home = () => {
     return (
         <div>
 
-            <div>
+            <div className='sticky top-0 z-50'>
                 <Navbar></Navbar>
             </div>
 
@@ -46,6 +49,8 @@ const Home = () => {
 
             </div>
 
+            <RecipeTestimonials></RecipeTestimonials>
+
 
 
 
@@ -55,6 +60,8 @@ const Home = () => {
             <div>
                 <HowItWorks></HowItWorks>
             </div>
+            <OurFeatures></OurFeatures>
+            <FeatureCard></FeatureCard>
 
             <div>
                 <Footer></Footer>

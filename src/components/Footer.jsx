@@ -24,7 +24,7 @@ const Footer = () => {
                 {/* Social Icons */}
                 <div className="flex gap-6 text-white">
                     <a
-                        href="https://www.facebook.com/yourusername"
+                        href="https://www.facebook.com/miskatujjaman.raihan"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook"
@@ -33,7 +33,7 @@ const Footer = () => {
                         <FaFacebookF />
                     </a>
                     <a
-                        href="https://www.instagram.com/yourusername"
+                        href="https://www.instagram.com/miskatujjaman/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"

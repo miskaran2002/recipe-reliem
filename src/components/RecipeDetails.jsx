@@ -174,6 +174,12 @@ const RecipeDetails = () => {
                         </div>
                     </div>
                 </motion.div>
+                {/* Back to Home Button */}
+                <div className="mt-12 text-center">
+                    <Link to="/" className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-xl shadow-lg transition">
+                        ← Back to Home
+                    </Link>
+                </div>
             </div>
 
             <Footer />

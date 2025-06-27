@@ -27,10 +27,10 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Home', path: '/' },
-        { name: 'AboutUs', path: '/aboutUs' },
-        { name: 'Add Recipe', path: '/addRecipe' },
+        { name: 'AboutUs', path: '/aboutUs' },      
+         user && { name: 'Add Recipe', path: '/addRecipe' },
         { name: 'All Recipes', path: '/allRecipes' },
-        { name: 'My Recipes', path: '/myRecipes' },
+        user &&{ name: 'My Recipes', path: '/myRecipes' },
        
         !user && {
             name: (
@@ -52,7 +52,7 @@ const Navbar = () => {
     ].filter(Boolean);
 
     return (
-        <nav className={`${bgColorClass[theme] || 'bg-white text-black'} shadow-md`}>
+        <nav className={`${bgColorClass[theme] || 'bg-white text-black'} shadow-md  sticky top-0 z-50`}>
             <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
                 <Link to="/" className="text-2xl font-bold tracking-wide">
                     🍽️ RecipeRealm
