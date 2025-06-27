@@ -22,6 +22,14 @@ import MyRecipes from './components/MyRecipes.jsx';
 import { ThemeProvider } from './contexts/ThemeContext';
 import AboutUs from './components/AboutUs.jsx';
 
+import DashboardLayout from './dashboard/DashbordLayout.jsx';
+import Overview from './dashboard/Overview.jsx';
+import AllRecipesDashboard from './dashboard/AllRecipesDashboard.jsx';
+import MyRecipesDashboard from './dashboard/MyRecipesDashboard.jsx';
+import { allRecipesLoader, myRecipesLoader } from './dashboard/loaders.js';
+
+
+
 
 
 const router = createBrowserRouter([
@@ -87,6 +95,32 @@ const router = createBrowserRouter([
     ]
 
   },
+
+
+
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+       <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      { index: true, element: <Overview /> },
+      {
+        path: '/dashboard/all',
+        element: <AllRecipesDashboard />,
+        loader: allRecipesLoader
+      },
+      {
+        path: '/dashboard/my',
+        element: <MyRecipesDashboard />,
+        
+      },
+      
+    ],
+  },
+
 
   {
     path: "/*",

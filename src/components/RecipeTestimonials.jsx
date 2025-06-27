@@ -39,7 +39,7 @@ const RecipeTestimonials = () => {
     const currentReview = testimonials[currentIndex];
 
     return (
-        <section className="bg-orange-50 dark:bg-gray-800 py-16 px-6 md:px-12 lg:px-24 text-center">
+        <section className="bg-slate-50 dark:bg-gray-800 py-16 px-6 md:px-12 lg:px-24 text-center">
             {/* Top Image */}
             <img
                 src="https://i.ibb.co/ZYW3VTp/chef-testimonial.jpg"
@@ -62,7 +62,7 @@ const RecipeTestimonials = () => {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md"
+                        className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-2xl"
                     >
                         <img
                             src={currentReview.img}

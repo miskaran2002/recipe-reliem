@@ -27,10 +27,12 @@ const Navbar = () => {
 
     const navItems = [
         { name: 'Home', path: '/' },
+        user && { name: 'Dashboard', path: '/dashboard' },
         { name: 'AboutUs', path: '/aboutUs' },      
          user && { name: 'Add Recipe', path: '/addRecipe' },
         { name: 'All Recipes', path: '/allRecipes' },
         user &&{ name: 'My Recipes', path: '/myRecipes' },
+      
        
         !user && {
             name: (
